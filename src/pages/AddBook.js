@@ -28,6 +28,23 @@ const AddBook = () => {
     setSearch(value);
   };
 
+  const changeBookShielf = (newbook, shelf) => {
+    BooksApi.update(newbook, shelf);
+
+    setBooks(
+      books.map((book) => {
+        if (book.id === newbook.id) {
+          return {
+            ...book,
+            shelf,
+          };
+        } else {
+          return book;
+        }
+      })
+    );
+  };
+
   return (
     <div className="search-books">
       <div className="search-books-bar">
@@ -46,7 +63,13 @@ const AddBook = () => {
       <div className="search-books-results">
         <ol className="books-grid">
           {books.map((book) => {
-            return <Book key={book.id} book={book} />;
+            return (
+              <Book
+                key={book.id}
+                book={book}
+                onBookShelfChange={changeBookShielf}
+              />
+            );
           })}
         </ol>
       </div>
