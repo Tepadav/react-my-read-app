@@ -1,4 +1,6 @@
-const BooksLists = ({ onShowSearchPage }) => {
+import { Link } from "react-router-dom";
+
+const BooksLists = () => {
   return (
     <div className="list-books">
       <div className="list-books-title">
@@ -244,7 +246,7 @@ const BooksLists = ({ onShowSearchPage }) => {
         </div>
       </div>
       <div className="open-search">
-        <a onClick={() => onShowSearchPage(true)}>Add a book</a>
+        <Link to="/add-book">Add a book</Link>
       </div>
     </div>
   );
