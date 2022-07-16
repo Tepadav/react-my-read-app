@@ -16,6 +16,23 @@ const BooksLists = () => {
     getBooks();
   }, []);
 
+  const changeBookShelf = (newBook, shelf) => {
+    BooksApi.update(newBook, shelf);
+
+    setBooks(
+      Books.map((book) => {
+        if (book.id === newBook.id) {
+          return {
+            ...book,
+            shelf,
+          };
+        } else {
+          return book;
+        }
+      })
+    );
+  };
+
   return (
     <div className="list-books">
       <div className="list-books-title">
@@ -23,9 +40,21 @@ const BooksLists = () => {
       </div>
       <div className="list-books-content">
         <div>
-          <Bookshelf type={"currentlyReading"} books={Books} />
-          <Bookshelf type={"wantToRead"} books={Books} />
-          <Bookshelf type={"read"} books={Books} />
+          <Bookshelf
+            onBookShelfChange={changeBookShelf}
+            type={"currentlyReading"}
+            books={Books}
+          />
+          <Bookshelf
+            onBookShelfChange={changeBookShelf}
+            type={"wantToRead"}
+            books={Books}
+          />
+          <Bookshelf
+            onBookShelfChange={changeBookShelf}
+            type={"read"}
+            books={Books}
+          />
         </div>
       </div>
       <div className="open-search">

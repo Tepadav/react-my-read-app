@@ -1,6 +1,16 @@
+import { useState } from "react";
 import PropTypes from "prop-types";
 
-const Book = ({ book }) => {
+const Book = ({ book, onBookShelfChange }) => {
+  const [shelfValue, setShelfValue] = useState(book.shelf);
+
+  const setBookSelf = (e) => {
+    const shelf = e.target.value;
+    setShelfValue(shelf);
+
+    onBookShelfChange(book, shelf);
+  };
+
   return (
     <div className="book">
       <div className="book-top">
@@ -13,7 +23,7 @@ const Book = ({ book }) => {
           }}
         ></div>
         <div className="book-shelf-changer">
-          <select>
+          <select value={shelfValue} onChange={(e) => setBookSelf(e)}>
             <option value="none" disabled>
               Move to...
             </option>
@@ -32,6 +42,7 @@ const Book = ({ book }) => {
 
 Book.propTypes = {
   Book: PropTypes.object.isRequired,
+  onBookShelfChange: PropTypes.func.isRequired
 };
 
 export default Book;

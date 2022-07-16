@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import Book from "./Books";
 
-const Bookshelf = ({ type, books }) => {
+const Bookshelf = ({ type, books, onBookShelfChange }) => {
   return (
     <div className="bookshelf">
       <h2 className="bookshelf-title">
@@ -16,7 +16,7 @@ const Bookshelf = ({ type, books }) => {
             .map((book) => {
               return (
                 <li>
-                  <Book book={book} />
+                  <Book onBookShelfChange={onBookShelfChange} book={book} />
                 </li>
               );
             })}
