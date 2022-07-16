@@ -41,7 +41,7 @@ const Book = ({ book, onBookShelfChange }) => {
 };
 
 Book.propTypes = {
-  Book: PropTypes.object.isRequired,
+  book: PropTypes.object.isRequired,
   onBookShelfChange: PropTypes.func.isRequired
 };
 
