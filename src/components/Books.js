@@ -19,7 +19,7 @@ const Book = ({ book, onBookShelfChange }) => {
           style={{
             width: 128,
             height: 193,
-            backgroundImage: "url(" + book.imageLinks.smallThumbnail + ")",
+            backgroundImage: "url(" + book?.imageLinks?.smallThumbnail + ")",
           }}
         ></div>
         <div className="book-shelf-changer">
@@ -34,7 +34,7 @@ const Book = ({ book, onBookShelfChange }) => {
           </select>
         </div>
       </div>
-      <div className="book-title">{book.title}</div>
+      <div className="book-title">{book?.title}</div>
       <div className="book-authors">{book.authors?.join(", ")}</div>
     </div>
   );
@@ -42,7 +42,7 @@ const Book = ({ book, onBookShelfChange }) => {
 
 Book.propTypes = {
   book: PropTypes.object.isRequired,
-  onBookShelfChange: PropTypes.func.isRequired
+  onBookShelfChange: PropTypes.func.isRequired,
 };
 
 export default Book;
