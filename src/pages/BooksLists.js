@@ -6,6 +6,16 @@ import * as BooksApi from "../BooksAPI.js";
 const BooksLists = () => {
   const [Books, setBooks] = useState([]);
 
+  useEffect(() => {
+    const getBooks = async () => {
+      const res = await BooksApi.getAll();
+
+      setBooks(res);
+    };
+
+    getBooks();
+  }, []);
+
   return (
     <div className="list-books">
       <div className="list-books-title">
