@@ -15,7 +15,7 @@ const Bookshelf = ({ type, books, onBookShelfChange }) => {
             .filter((book) => book.shelf === type)
             .map((book) => {
               return (
-                <li>
+                <li key={book.id}>
                   <Book onBookShelfChange={onBookShelfChange} book={book} />
                 </li>
               );
