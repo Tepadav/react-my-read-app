@@ -2,7 +2,7 @@ import { useState } from "react";
 import PropTypes from "prop-types";
 
 const Book = ({ book, onBookShelfChange }) => {
-  const [shelfValue, setShelfValue] = useState(book.shelf);
+  const [shelfValue, setShelfValue] = useState(book.shelf || "");
 
   const setBookSelf = (e) => {
     const shelf = e.target.value;
