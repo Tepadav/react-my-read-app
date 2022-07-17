@@ -1,31 +1,50 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import Book from "../components/Books";
 import * as BooksApi from "../BooksAPI";
+
+const timeoutMilliseconds = 2000;
+let searchTimeout = setTimeout(() => {}, timeoutMilliseconds);
 
 const AddBook = () => {
   const [searchValue, setSearch] = useState("");
   const [books, setBooks] = useState([]);
 
-  useEffect(() => {
-    const search = async () => {
-      const res = await BooksApi.search(searchValue, undefined);
-      if (res?.items) {
-        setBooks([]);
-      } else {
-        setBooks(res);
+  const search = (value) => {
+    const searchfunc = async () => {
+      if (value !== "") {
+        const res = await BooksApi.search(value, undefined);
+        if (res?.items) {
+          setBooks([]);
+        } else {
+          setBooks(res);
+        }
       }
     };
 
-    if (searchValue === "") {
-      return;
-    }
-    search();
-  }, [searchValue]);
+    searchfunc();
+  };
+
+  const resetSearchTimeout = () => {
+    clearTimeout(searchTimeout);
+  };
+
+  const setNewTimeout = (value) => {
+    searchTimeout = setTimeout(() => {
+      search(value);
+    }, timeoutMilliseconds);
+  };
 
   const updateSearchInput = (e) => {
     const value = e.target.value;
     setSearch(value);
+    if (value !== "") {
+      resetSearchTimeout();
+      setNewTimeout(value);
+    } else {
+      clearTimeout();
+      setBooks([]);
+    }
   };
 
   const changeBookShielf = (newbook, shelf) => {
