@@ -27,6 +27,9 @@ To get started developing or testing right away:
     ├── Pages
     |   ├── AddBook.js # Holds the search for books page.
     |   └── BooksLists.js # Holds Books shelves and It's the main page.
+    ├── components
+    |   ├── Books.js # Holds a componenet the represents a Book.
+    |   └── BookShelf.js # Holds Categories of the books and it contains books but with the same shelf type. 
     ├── icons # Helpful images for your app. Use at your discretion.
     │   ├── add.svg
     │   ├── arrow-back.svg
